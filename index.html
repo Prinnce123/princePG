@@ -438,5 +438,27 @@
             });
         });
     </script>
+    <!-- Footer Section -->
+<footer>
+  <div class="footer-content" style="text-align: center; background-color: #333; color: white; padding: 20px;">
+    <p>PG Room Photo and Video</p>
+    <!-- Instagram Link -->
+    <a href="https://www.instagram.com/princepg_mariam" target="_blank" style="margin-top: 10px; display: inline-block;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Icon" style="width: 40px; height: 40px; transition: transform 0.3s;">
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Optional: Adds a hover effect to zoom the icon slightly
+  const instagramIcon = document.querySelector('img');
+  instagramIcon.addEventListener('mouseenter', () => {
+    instagramIcon.style.transform = 'scale(1.1)';
+  });
+  instagramIcon.addEventListener('mouseleave', () => {
+    instagramIcon.style.transform = 'scale(1)';
+  });
+</script>
+
 </body>
 </html>
