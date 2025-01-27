@@ -3,23 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince PG - Premium Accommodation</title>
+    <title>Prince PG - Premium Student Accommodation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #4a148c;
             --accent-color: #ffd600;
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --card-bg: #ffffff;
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #bb86fc;
-            --accent-color: #03dac6;
-            --bg-color: #121212;
-            --text-color: #ffffff;
-            --card-bg: #1e1e1e;
+            --text-color: #333;
         }
 
         * {
@@ -27,195 +17,401 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', sans-serif;
-            transition: background 0.3s, color 0.3s;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: var(--bg-color);
-            color: var(--text-color);
+            background: #f8f9fa;
         }
 
-        /* Dark mode toggle */
-        .theme-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: var(--bg-color);
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        /* Tabs styling */
-        .tabs-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            overflow-x: auto;
-        }
-
-        .tab-btn {
-            padding: 1rem 2rem;
-            background: var(--card-bg);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-color);
-            font-weight: 600;
-            transition: 0.3s all;
-        }
-
-        .tab-btn.active {
-            background: var(--primary-color);
-            color: var(--bg-color);
-        }
-
-        .tab-content {
-            display: none;
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .amenities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 1rem;
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-
-        .amenity-item {
-            padding: 1.5rem;
-            background: var(--bg-color);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        /* Previous styles remain with dark mode adjustments */
         .navbar {
-            background: var(--card-bg);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary-color), #6a1b9a);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .card {
-            background: var(--card-bg);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .amenities-list li {
+            margin: 1rem 0;
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .amenities-list li:before {
+            content: "✓";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
         }
 
         .contact-box {
+            text-align: center;
             background: var(--primary-color);
-            color: var(--bg-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
         }
 
-        /* Rest of previous styles with color variables */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .room-card {
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            background: white;
+        }
+
+        .room-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .price-tag {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .booking-steps {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .feature-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.5rem 2rem;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .fa-whatsapp {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s all ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
-    <!-- Add theme toggle -->
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- Navigation and hero section same as before -->
-
-    <!-- Updated Amenities Section with Tabs -->
-    <section class="section">
-        <div class="tabs-container">
-            <div class="tabs">
-                <button class="tab-btn active" onclick="openTab(event, 'single')">Single Room</button>
-                <button class="tab-btn" onclick="openTab(event, 'double')">Double Room</button>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Prince PG</div>
+            <div class="nav-links">
+                <a href="#amenities">Amenities</a>
+                <a href="#rooms">Rooms</a>
+                <a href="#facilities">Facilities</a>
+                <a href="#contact">Contact</a>
             </div>
+        </div>
+    </nav>
 
-            <!-- Single Room Amenities -->
-            <div id="single" class="tab-content active">
-                <div class="amenities-grid">
-                    <div class="amenity-item">
-                        <h3>🛌 Bed & Storage</h3>
-                        <ul class="amenities-list">
-                            <li>Premium box bed with orthopedic mattress</li>
-                            <li>Under-bed storage drawers</li>
-                            <li>Personal wardrobe with locker</li>
-                            <li>Overhead storage shelves</li>
-                        </ul>
-                    </div>
-                    <!-- Add more amenity items -->
-                </div>
+    <section class="hero">
+        <h1>Experience Premium Student Living</h1>
+        <p>Your Home Away From Home</p>
+        <a href="#contact" class="cta-button">Book Your Room Now</a>
+    </section>
+
+    <section id="amenities" class="section scroll-reveal">
+        <h2 class="section-title">🌟 Room Amenities</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🛌 Modern Comfort</h3>
+                <ul class="amenities-list">
+                    <li>Attached bathrooms with premium fittings</li>
+                    <li>Fully furnished rooms with box beds</li>
+                    <li>Personal storage & study tables</li>
+                </ul>
             </div>
-
-            <!-- Double Room Amenities -->
-            <div id="double" class="tab-content">
-                <div class="amenities-grid">
-                    <div class="amenity-item">
-                        <h3>🛌 Shared Comfort</h3>
-                        <ul class="amenities-list">
-                            <li>Two single beds with separate mattresses</li>
-                            <li>Individual storage units per occupant</li>
-                            <li>Shared wardrobe with separate lockers</li>
-                            <li>Dual charging stations</li>
-                        </ul>
-                    </div>
-                    <!-- Add more amenity items -->
-                </div>
+            <div class="card">
+                <h3>💡 Smart Features</h3>
+                <ul class="amenities-list">
+                    <li>4-mode mood lighting</li>
+                    <li>5-star inverter ACs</li>
+                    <li>Individual electricity meters</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Updated Contact Section -->
-    <section id="contact" class="section">
+    <section id="rooms" class="section scroll-reveal">
+        <h2 class="section-title">🛌 Room Types</h2>
+        <div class="grid">
+            <div class="room-card">
+                <div class="feature-badge">Most Popular</div>
+                <h3>Single Occupancy Room</h3>
+                <div class="price-tag">Starting at ₹9,999/month</div>
+                <ul class="amenities-list">
+                    <li>Personal AC (Split Type)</li>
+                    <li>Exclusive study space</li>
+                    <li>Private storage locker</li>
+                    <li>24/7 Power Backup</li>
+                </ul>
+                <a href="tel:9818685047" class="cta-button">Book Single Room</a>
+            </div>
+
+            <div class="room-card">
+                <h3>Double Occupancy Room</h3>
+                <div class="price-tag">Starting at ₹7,999/month</div>
+                <ul class="amenities-list">
+                    <li>Shared AC (Split Type)</li>
+                    <li>Dual study tables</li>
+                    <li>Separate storage units</li>
+                    <li>24/7 Power Backup</li>
+                </ul>
+                <a href="tel:9818685047" class="cta-button">Book Double Room</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities" class="section scroll-reveal">
+        <h2 class="section-title">🏆 Premium Facilities</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🍽️ Kitchen & Dining</h3>
+                <ul class="amenities-list">
+                    <li>Free LPG gas stoves</li>
+                    <li>Microwave (coming soon)</li>
+                    <li>Dedicated cleaning staff</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>📱 Digital Connect</h3>
+                <ul class="amenities-list">
+                    <li>Dedicated WhatsApp group for residents</li>
+                    <li>Instant complaint resolution</li>
+                    <li>Important updates & notices</li>
+                    <li>Community announcements</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section scroll-reveal" style="background: #f8f9fa;">
+        <h2 class="section-title">📲 Easy 3-Step Booking</h2>
+        <div class="booking-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Call for Availability</h3>
+                <p>Directly contact Prince Sharma to check room availability</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Visit & Select</h3>
+                <p>Schedule a visit to choose your preferred room</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Move In</h3>
+                <p>Complete paperwork and move in immediately</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section scroll-reveal">
         <div class="contact-box">
-            <h2>📱 Instant Booking</h2>
-            <div class="contact-options">
-                <a href="https://wa.me/919818685047" 
-                   class="cta-button whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
-                <a href="tel:9818685047" class="cta-button">
-                    <i class="fas fa-phone"></i> Call Now
+            <h2>📞 Book Your Stay Today!</h2>
+            <p style="margin: 1rem 0;">
+                <i class="fas fa-map-marker-alt"></i> 19 Mariam Nagar, Ghaziabad - 201003
+            </p>
+            <p>Prince Sharma: <a href="tel:9818685047" style="color:var(--accent-color)">9818685047</a></p>
+            
+            <div style="margin: 2rem 0;">
+                <a href="https://wa.me/YOUR_WHATSAPP_GROUP_LINK" 
+                   class="cta-button" 
+                   style="background: #25D366; color: white;">
+                    <i class="fab fa-whatsapp"></i> Join WhatsApp Group
                 </a>
             </div>
+            
+            <a href="tel:9818685047" class="cta-button">
+                <i class="fas fa-phone"></i> Call Now
+            </a>
         </div>
     </section>
 
     <script>
-        // Dark Mode Toggle
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-            document.body.setAttribute('data-theme', theme);
-            document.querySelector('.theme-toggle i').classList.toggle('fa-sun');
-        }
+        const scrollReveal = document.querySelectorAll('.scroll-reveal');
+        
+        const revealOnScroll = () => {
+            scrollReveal.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if(elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
 
-        // Tab System
-        function openTab(evt, tabName) {
-            const tabContents = document.querySelectorAll('.tab-content');
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            
-            tabContents.forEach(content => content.classList.remove('active'));
-            tabBtns.forEach(btn => btn.classList.remove('active'));
-            
-            evt.currentTarget.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
 
-        // Scroll Reveal (from previous code)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
