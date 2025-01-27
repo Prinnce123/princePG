@@ -70,6 +70,31 @@
             color: var(--primary-color);
         }
 
+        .nav-links a {
+         text-decoration: none;
+         color: var(--text-color);
+         font-weight: 500;
+         transition: color 0.3s;
+       }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+       }
+
+/* Styling for the Instagram Icon */
+     .nav-links .social-icon {
+       font-size: 1.6rem; /* Adjust the size as needed */
+       color: var(--text-color); /* Instagram icon color */
+      margin-left: 20px; /* Space between the icon and the links */
+      transition: color 0.3s, transform 0.3s;
+      }
+
+      .nav-links .social-icon:hover {
+       color: var(--primary-color); /* Change color when hovered */
+       transform: scale(1.1); /* Slight zoom effect on hover */
+      }
+
+
         .hero {
             padding: 8rem 2rem 4rem;
             text-align: center;
@@ -276,6 +301,8 @@
                 <a href="#rooms">Rooms</a>
                 <a href="#facilities">Facilities</a>
                 <a href="#contact">Contact</a>
+                <a href="https://www.instagram.com/princepg_mariam" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i> </a>
                 
             </div>
         </div>
